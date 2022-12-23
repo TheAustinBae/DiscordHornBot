@@ -8,23 +8,23 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import lombok.extern.slf4j.Slf4j;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.audio.AudioSource;
-import org.javacord.api.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
 public class MusicController {
 
+  private static String CHANNEL_ID = "1052335782867779649";
   @Autowired DiscordApi discordApi;
 
-  @Bean
+  @Scheduled(cron="0 0 18 * * *")
   // @Scheduled
   public void playMusic() {
     log.info("Play Music Bean");
     discordApi
-        .getServerVoiceChannelById("1052335782867779649")
+        .getServerVoiceChannelById(CHANNEL_ID)
         .ifPresent(
             channel ->
               channel
