@@ -1,4 +1,4 @@
-package com.austin.DiscordHornBot.listeners.audio;
+package com.austin.discordhornbot.listeners.audio;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.playback.AudioFrame;

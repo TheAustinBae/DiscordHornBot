@@ -1,4 +1,4 @@
-package com.austin.DiscordHornBot;
+package com.austin.discordhornbot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -6,7 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DiscordHornBotApplicationTests {
 
-	@Test
 	void contextLoads() {
 	}
 

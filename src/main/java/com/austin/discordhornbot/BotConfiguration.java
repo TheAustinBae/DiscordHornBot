@@ -1,4 +1,4 @@
-package com.austin.DiscordHornBot;
+package com.austin.discordhornbot;
 
 import lombok.extern.slf4j.Slf4j;
 import org.javacord.api.DiscordApi;

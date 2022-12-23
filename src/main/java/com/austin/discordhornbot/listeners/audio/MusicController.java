@@ -1,7 +1,6 @@
-package com.austin.DiscordHornBot.listeners.audio;
+package com.austin.discordhornbot.listeners.audio;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
@@ -9,9 +8,9 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import lombok.extern.slf4j.Slf4j;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.audio.AudioSource;
+import org.javacord.api.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -27,7 +26,7 @@ public class MusicController {
     discordApi
         .getServerVoiceChannelById("1052335782867779649")
         .ifPresent(
-            channel -> {
+            channel ->
               channel
                   .connect()
                   .thenAccept(
@@ -63,13 +62,13 @@ public class MusicController {
                                 log.info("Loading Failed");
                               }
                             });
+                        try {
+                          Thread.sleep(4000);
+                        } catch (InterruptedException e) {
+                          throw new RuntimeException(e);
+                        }
+                        channel.disconnect();
                       })
-                  .exceptionally(
-                      e -> {
-                        // Failed to connect to voice channel (no permissions?)
-                        e.printStackTrace();
-                        return null;
-                      });
-            });
+            );
   }
 }
